@@ -1,0 +1,19 @@
+# To run an project on Docker node to be isntalled so for that FROM is written
+# node is used to run our project and alpine is a version
+FROM node:alpine
+
+# Unique work directory will be created on the container
+WORKDIR /usr/src/app
+
+# First Dot copies the files present on the root directory
+# Second Dot copies the files into the WORKDIR path given above of the container
+COPY . .
+
+# To add other dependencies for the project into the container
+RUN npm install
+
+# Commanding container to load the project on localhost:3000
+EXPOSE 3000
+
+# Once build is done, soon after that container need to start project using the below command
+CMD [ "npm", "run", "start" ]
